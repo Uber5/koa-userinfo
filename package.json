@@ -13,5 +13,12 @@
     "userinfo"
   ],
   "author": "Chris Oloff <chris@uber5.com> (http://about.uber5.com/)",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-preset-env": "1.6.0",
+    "babel-preset-flow": "6.23.0",
+    "babel-register": "6.26.0",
+    "jest": "20.0.4"
+  }
 }
