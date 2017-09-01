@@ -1,0 +1,17 @@
+{
+  "name": "koa-userinfo",
+  "version": "0.0.1",
+  "description": "openid style userinfo as middleware, for koa",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "koa",
+    "openid",
+    "oauth2",
+    "userinfo"
+  ],
+  "author": "Chris Oloff <chris@uber5.com> (http://about.uber5.com/)",
+  "license": "MIT"
+}
