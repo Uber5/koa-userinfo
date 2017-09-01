@@ -4,7 +4,10 @@
   "description": "openid style userinfo as middleware, for koa",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest"
+    "build": "babel src --out-dir dist",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "coverage": "jest --coverage"
   },
   "keywords": [
     "koa",
