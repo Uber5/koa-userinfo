@@ -38,6 +38,24 @@ describe('the middleware', () => {
       })
 
     })
+
+    it('adds "userinfo" to the context', async () => {
+
+      const middleware = koaUserinfo({
+        site: 'some-site',
+      })
+      const ctx = newCtx()
+      ctx.headers.authorization = 'Bearer 123'
+
+      return await new Promise(resolve => {
+        middleware(ctx, () => {
+          expect(ctx.userinfo).toBeTruthy()
+          resolve()
+        })
+      })
+
+    })
+
   })
 
 })

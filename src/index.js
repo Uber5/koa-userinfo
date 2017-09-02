@@ -1,5 +1,7 @@
 //@flow
 
+import requestUserinfo from './request-userinfo'
+
 type Options = {
   site: string,
   allowMissingOrInvalidToken?: boolean
@@ -25,12 +27,18 @@ export default (options: Options) => {
   return async (ctx, next) => {
 
     const token = getAccessTokenFromHeader(ctx)
-    if (!token && !options.allowMissingOrInvalidToken) {
-      return ctx.throw(401, 'Unable to use / extract Bearer token')
+
+    if (!token) {
+      if (options.allowMissingOrInvalidToken) {
+        return await next()
+      } else {
+        return ctx.throw(401, 'Unable to use / extract Bearer token')
+      }
+    } else {
+      ctx.userinfo = await requestUserinfo(options.site)
+      await next()
     }
-    
-    console.log('do stuff...')
-    await next()
+
   }
 
 }
