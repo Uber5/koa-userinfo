@@ -1,3 +1,5 @@
+jest.mock('../request-userinfo')
+
 import koaUserinfo from '../'
 
 const newCtx = () => ({
