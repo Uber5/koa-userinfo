@@ -1,6 +1,7 @@
 //@flow
 
 import requestUserinfo from './request-userinfo'
+import type { Context } from 'koa'
 
 const debug = require('debug')('koa-userinfo')
 
@@ -29,7 +30,7 @@ export default (options: Options) => {
     throw new Error('option "site" missing')
   }
 
-  return async (ctx, next) => {
+  return async (ctx: Context, next: () => Promise<void>) => {
 
     const token = getAccessTokenFromHeader(ctx)
 

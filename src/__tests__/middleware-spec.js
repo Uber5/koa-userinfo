@@ -17,14 +17,23 @@ describe('the middleware', () => {
 
   describe('using it', () => {
 
-    it('throws without or invalid authorization header', () => {
+    it('throws without authorization header', () => {
 
       const middleware = koaUserinfo({ site: '123' })
       const ctx = newCtx()
-      // expect(() => middleware(ctx)).toThrow()
       middleware(ctx)
       expect(ctx.throw.mock.calls.length).toBe(1)
 
+    })
+
+    it('throws with invalid authorization header', () => {
+
+      const middleware = koaUserinfo({ site: '123' })
+      const ctx = newCtx()
+      ctx.headers.authorization = 'this is not okay'
+      middleware(ctx)
+      expect(ctx.throw.mock.calls.length).toBe(1)
+      
     })
 
     it('does not throw if throwing disabled', async () => {
