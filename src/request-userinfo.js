@@ -5,6 +5,7 @@ import { parse } from 'url'
 export default async (url: string, token: string) => {
 
   const { hostname, port, path } = parse(url)
+  
   return new Promise((resolve, reject) => {
     get({
       hostname,
