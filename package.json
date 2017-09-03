@@ -8,7 +8,9 @@
     "test": "jest src",
     "test:watch": "npm test -- --watch",
     "coverage": "jest --coverage src",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "prepublish": "npm run clean && npm test && npm run build",
+    "postpublish": "npm run clean"
   },
   "keywords": [
     "koa",
