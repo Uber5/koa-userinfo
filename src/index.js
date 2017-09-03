@@ -2,6 +2,8 @@
 
 import requestUserinfo from './request-userinfo'
 
+const debug = require('debug')('koa-userinfo')
+
 type Options = {
   site: string,
   allowMissingOrInvalidToken?: boolean
@@ -10,13 +12,16 @@ type Options = {
 const getAccessTokenFromHeader = ctx => {
   const auth = ctx.headers.authorization
   if (!auth) {
+    debug('No "Authorization" header found, headers:', ctx.headers)
     return undefined
   }
   const match = auth.match(/^Bearer (.+)$/)
-  return match && match[1]
+  if (!match) {
+    debug('Authorization header does not match "Bearer" token format')
+    return undefined
+  }
+  return match[1]
 }
-
-
 
 export default (options: Options) => {
 
@@ -32,11 +37,16 @@ export default (options: Options) => {
       if (options.allowMissingOrInvalidToken) {
         return await next()
       } else {
-        return ctx.throw(401, 'Unable to use / extract Bearer token')
+        return ctx.throw(401, 'Unable to use or extract Bearer token')
       }
     } else {
-      ctx.userinfo = await requestUserinfo(options.site)
-      await next()
+      try {
+        ctx.userinfo = await requestUserinfo(options.site, token)
+        debug('userinfo', ctx.userinfo)
+        await next()
+      } catch (err) {
+        return ctx.throw(401, err)
+      }
     }
 
   }
