@@ -20,6 +20,10 @@
   ],
   "author": "Chris Oloff <chris@uber5.com> (http://about.uber5.com/)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Uber5/koa-userinfo.git"
+  },
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-jest": "20.0.3",
