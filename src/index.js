@@ -24,6 +24,10 @@ const getAccessTokenFromHeader = ctx => {
   return match[1]
 }
 
+export {
+  requestUserinfo
+}
+
 export default (options: Options) => {
 
   if (!options.site) {
