@@ -48,10 +48,10 @@ export default (options: Options) => {
       try {
         ctx.userinfo = await requestUserinfo(options.site, token)
         debug('userinfo', ctx.userinfo)
-        await next()
       } catch (err) {
         return ctx.throw(401, err)
       }
+      await next();
     }
 
   }
