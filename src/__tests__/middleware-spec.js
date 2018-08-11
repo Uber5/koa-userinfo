@@ -67,6 +67,23 @@ describe('the middleware', () => {
 
     })
 
+    it ('throws the original error, in case of a downstream error', async () => {
+      const middleware = koaUserinfo({
+        site: 'some-site',
+      })
+      const ctx = newCtx()
+      ctx.headers.authorization = 'Bearer 123'
+      const next = async () => {
+        throw new Error('oops')
+      }
+      try {
+        await middleware(ctx, next)
+        throw new Error('FAIL: should have thrown!')
+      } catch(e) {
+        expect(e.message).toMatch(/oops/)
+      }
+    })
+
   })
 
 })
