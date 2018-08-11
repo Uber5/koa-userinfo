@@ -51,7 +51,7 @@ export default (options: Options) => {
       } catch (err) {
         return ctx.throw(401, err)
       }
-      await next();
+      await next()
     }
 
   }
