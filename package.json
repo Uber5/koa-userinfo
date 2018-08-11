@@ -1,6 +1,6 @@
 {
   "name": "koa-userinfo",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "openid style userinfo as middleware, for koa",
   "main": "dist/index.js",
   "scripts": {
