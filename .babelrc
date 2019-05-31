@@ -1,6 +1,10 @@
 {
   "presets": [
-    "env",
-    "flow"
+    ["@babel/preset-env", {
+      "targets": {
+        "node": "current"
+      }
+    }],
+    "@babel/preset-flow"
   ]
 }
